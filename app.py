@@ -33,9 +33,9 @@ if uploaded_file:
         st.dataframe(df.head())
         df2 = df.copy()
         ## Recuperation des variables quantitatives
-        varQuant = ["Quantity", "UnitPrice"]
+        varQuant = ["UnitPrice", "Quantity"]
         ## Recuperation des variables qualitatives
-        varQual = ["StockCode", "Description", "Country"]
+        varQual = ["Country", "Description", "StockCode"]
 
         choix = st.sidebar.selectbox("Type statistique", ("Description", "Graphique"))
         # Statistique descriptive
@@ -54,26 +54,18 @@ if uploaded_file:
         # Les graphiques
         elif choix == "Graphique":
             statist = st.sidebar.selectbox(
-                "Graphiques", ("Histogramme", "Diagramme en barre", "Boxplot")
+                "Graphiques", ("Diagramme en barre", "Histogramme", "Boxplot")
             )
 
             # Visualisation des variables quantitatives
             if statist == "Histogramme":
                 st.text("Représantation graphique des variables quantitatives")
                 var = st.sidebar.selectbox("Choisire la variable", varQuant)
-                don, ax = plt.subplots()
-                ax = sns.histplot(
-                    data=df2,
-                    x=var,
-                    stat="density",
-                    label="Histogramme",
-                    color="blue",
-                )
-                sns.kdeplot(data=df2, x=var, label="Densité", color="red")
+                fig, ax = plt.subplots()
+                sns.histplot(df[var], bins=30, ax=ax)
                 plt.title(f"Histogramme de {var}")
                 plt.xlabel(var)
-                plt.ylabel("Densité")
-                st.pyplot(don)
+                st.pyplot(fig)
 
                 # Visualisation des variables qualitatives
             elif statist == "Diagramme en barre":
