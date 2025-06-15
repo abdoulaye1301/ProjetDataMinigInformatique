@@ -9,7 +9,7 @@ def run_kmeans(df):
     kmeans = KMeans(n_clusters=3, random_state=42)
     features["Cluster"] = kmeans.fit_predict(features)
     fig = px.scatter(
-        features, x="Quantité", y="Montant total", color=features["Cluster"].astype(str)
+        features, x="Quantity", y="TotalAmount", color=features["Cluster"].astype(str)
     )
     return features.reset_index(), fig
 
