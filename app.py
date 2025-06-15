@@ -61,11 +61,19 @@ if uploaded_file:
             if statist == "Histogramme":
                 st.text("Représantation graphique des variables quantitatives")
                 var = st.sidebar.selectbox("Choisire la variable", varQuant)
-                fig, ax = plt.subplots()
-                sns.histplot(df[var], bins=30, ax=ax)
+                don, ax = plt.subplots()
+                ax = sns.histplot(
+                    data=df2,
+                    x=var,
+                    stat="density",
+                    label="Histogramme",
+                    color="blue",
+                )
+                sns.kdeplot(data=df2, x=var, label="Densité", color="red")
                 plt.title(f"Histogramme de {var}")
                 plt.xlabel(var)
-                st.pyplot(fig)
+                plt.ylabel("Densité")
+                st.pyplot(don)
 
                 # Visualisation des variables qualitatives
             elif statist == "Diagramme en barre":
