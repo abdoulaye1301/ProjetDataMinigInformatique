@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def run_rfm(df):
 
     snapshot_date = df["InvoiceDate"].max() + pd.Timedelta(days=1)
