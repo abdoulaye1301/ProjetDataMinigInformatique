@@ -11,11 +11,11 @@ def run_kmeans(df):
     fig = px.scatter(
         features, x="Quantity", y="TotalAmount", color=features["Cluster"].astype(str)
     )
-    return features.reset_index(), fig
+    return features.reset_index(), fig, kmeans
 
 
 # Prédiction sur de nouveaux clients
 def predict_cluster(kmeans_model, quantity, amount):
-    X_new = pd.DataFrame([[quantity, amount]], columns=["Quantité", "Montant_total"])
+    X_new = pd.DataFrame([[quantity, amount]], columns=["Quantity", "TotalAmount"])
     cluster = kmeans_model.predict(X_new)[0]
     return int(cluster)

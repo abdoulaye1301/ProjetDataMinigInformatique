@@ -130,7 +130,7 @@ if uploaded_file:
 
         elif model_choice == "K-means":
             st.subheader("Segmentation client - K-means")
-            result_df, fig = run_kmeans(df)
+            result_df, fig, _ = run_kmeans(df)
             st.plotly_chart(fig)
             st.dataframe(result_df)
 
