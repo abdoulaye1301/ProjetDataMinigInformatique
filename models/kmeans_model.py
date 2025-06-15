@@ -16,6 +16,6 @@ def run_kmeans(df):
 
 # Prédiction sur de nouveaux clients
 def predict_cluster(kmeans_model, quantity, amount):
-    X_new = pd.DataFrame([[quantity, amount]], columns=["Quantity", "TotalAmount"])
+    X_new = pd.DataFrame([[quantity, amount]], columns=["Quantité", "Montant_total"])
     cluster = kmeans_model.predict(X_new)[0]
     return int(cluster)
