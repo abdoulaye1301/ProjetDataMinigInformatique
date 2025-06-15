@@ -8,7 +8,7 @@ def run_kmeans(df):
     kmeans = KMeans(n_clusters=3, random_state=42)
     features['Cluster'] = kmeans.fit_predict(features)
     fig = px.scatter(features, x="Quantity", y="TotalAmount", color=features['Cluster'].astype(str))
-    return features.reset_index(), fig, kmeans
+    return features.reset_index(), fig
 
 # Prédiction sur de nouveaux clients
 def predict_cluster(kmeans_model, quantity, amount):
